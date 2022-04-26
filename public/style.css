@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Prompt:wght@500&display=swap');
+body {
+    color: #F5F5F5;
+    background: url(https://superiorservers.co/static/images/background.jpg);
+    background-color: rgb(32 46 59);
+    overflow-x: hidden;
+}
+.title {
+    color: #F5F5F5!important;
+    text-decoration: none;
+    width: fit-content;
+    font-family:'Rajdhani', cursive;
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+@keyframes flash {
+    0% {
+        color: #F5F5F5;
+    }
+    50% {
+        color: rgb(147 194 236);
+    }
+    100% {
+        color: #F5F5F5;
+    }
+}
+.blink {
+    animation: flash 3s infinite; 
+}
+@keyframes loadin {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.centered {
+    animation: loadin 3s;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Prompt', sans-serif!important;
+    font-size: 25px;
+    position: relative;
+    min-width: max-content;
+    width: 50%;
+    height: 25%;
+    min-height: 425px;
+    margin: auto;
+    top: 30vh;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.main-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 200px;
+    padding: 5px;
+    background-color:rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+#half-block-container {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.half-block {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 200px;
+    padding: 5px;
+    background-color:rgba(0,0,0,0.3);
+    border-radius: 5px;
+    width: 48%;
+    margin-top: 5px;
+    transition: 2s;
+}
+.half-block:hover {
+  width: 62%;
+}
+/* Aids Hack.... If any box is being hovered over, get children of any which are not being hovered and make them 20% width. Otherwise remain 70%*/
+#half-block-container:hover > .half-block:not(n):not(:hover){
+  width: 35%!important;
+}
+
+#search-controls {
+    height: 40%;
+    width: 100%;
+    margin: 0px;
+    padding: 0;
+}
+.creds {
+    width: fit-content;
+}
+.cred-flex {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.3);
+}
+.logo-small {
+    width: 100px;
+}
+.large-input, #steam-go {
+    font-family: 'Prompt', sans-serif;
+    text-transform: uppercase;
+    color: #F5F5F5;
+    border: none;
+    border-radius: 2px;
+    height: 6vh;
+    font-size: 0.75em;
+}
+.large-input {
+    background-color: rgb(28 51 82);
+    width: 75%;
+}
+#steam-go { 
+    font-size: 0.75em;
+    background-color: #078807;
+}

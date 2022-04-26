@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SUP Tracker</title>
+        <link rel="shortcut icon" href="https://superiorservers.co/static/favicon.ico">
+        <link href="style.css" rel="stylesheet">
+        <script src="content.js"></script>
+    </head>
+    <body>
+        <div class="creds"><a href="https://superiorservers.co/"><img class="cred-flex logo-small" src="https://superiorservers.co/static/images/site-logo_reduced.png"></img></a></div>
+        <a href="/" class="title"><span class="blink">SUP</span> TRACKER</a>
+        <div class="centered">
+            <div class="main-block">
+            <div class="gold-label">FIND YOUR SUPERIORSERVERS STATS</div>
+            <form onsubmit="return isValidSteam()" action="./player/" id="search-controls">
+                <input class="large-input" id="steamID" name="s" placeholder="Enter Player SteamID">
+                <button type="submit" id="steam-go">Search</button>
+            </form>
+            </div>
+            <div id="half-block-container">
+            <a class="half-block" id="org-button" href="/top/orgs/">View Top 100 Orgs</a>
+            <a class="half-block" id="top-button" href="/top/players/">View Top 100 Players</a>
+            </div>
+        </div>
+    </body>
+</html>

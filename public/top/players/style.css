@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Prompt:wght@500&display=swap');
+body {
+    background-color: rgb(32 46 59);
+    color: #F5F5F5;
+    background: url(https://superiorservers.co/static/images/background.jpg);
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+.hidden {
+    display: none!important;
+}
+.creds {
+    width: fit-content;
+}
+.cred-flex {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.3);
+}
+.logo-small {
+    width: 100px;
+}
+.title {
+    color: #F5F5F5!important;
+    text-decoration: none;
+    width: fit-content;
+    font-family:'Rajdhani', cursive;
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+#content-container {
+    display: flex;
+}
+#content {
+    padding: 15px;
+    background-color: rgba(0,0,0, 0.25);
+    width: 75%;
+    height: fit-content;
+    min-height: 500px;
+    margin:auto;
+    font-family: 'Rajdhani', cursive;
+    text-align: center;
+}
+#user-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center ;
+}
+.user-data {
+    font-family: 'Rajdhani', cursive;
+}
+.large {
+    font-size: 3em;
+}
+.medium {
+    font-size: large;
+}
+#user-profile-pic {
+    padding: 0;
+    background-color: #212121;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: #616161;
+    border-style: solid;
+    margin: auto;
+}
+#chart-container {
+  font-family: 'Rajdhani', cursive;
+  color: #E53935;
+}
+
+
+@keyframes flash {
+    0% {
+        color: #F5F5F5;
+    }
+    50% {
+        color: rgb(147 194 236);
+    }
+    100% {
+        color: #F5F5F5;
+    }
+}
+.blink {
+    animation: flash 3s infinite; 
+}
