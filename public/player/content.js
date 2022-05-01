@@ -75,9 +75,23 @@ function instantiateCharts() {
             }]
         },
         options: {
+          plugins: {
+            tooltip: {
+              callbacks: {
+                title: function(context) {
+                  return context[0].label + ' Hour(s) Ago';
+                }
+              }
+            },
+            decimation: {
+               enabled: true,
+               algorithm: 'lttb',
+               samples: 50,
+             },
+          },
             elements: {
               point:{
-                radius: 2
+                radius: 5
               }
             },
             responsive: true,
@@ -106,7 +120,7 @@ function instantiateCharts() {
         options: {
             elements: {
               point:{
-                radius: 2
+                radius: 5
               }
             },
             responsive: true,

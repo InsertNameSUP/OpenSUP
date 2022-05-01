@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Prompt:wght@500&display=swap');
+body {
+    background-color: rgb(32 46 59);
+    color: #F5F5F5;
+    background: url(https://superiorservers.co/static/images/background.jpg);
+    padding: 0;
+    margin: 0;
+}
+.hidden {
+    display: none!important;
+}
+.creds {
+    width: fit-content;
+}
+.cred-flex {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.3);
+}
+.logo-small {
+    width: 100px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.title {
+    color: #F5F5F5!important;
+    text-decoration: none;
+    width: fit-content;
+    font-family:'Rajdhani', cursive;
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+#content-container {
+    display: flex;
+}
+#content {
+    padding: 15px;
+    background-color: rgba(0,0,0, 0.25);
+    width: 75%;
+    height: fit-content;
+    min-height: 500px;
+    margin:auto;
+    font-family: 'Rajdhani', cursive;
+    text-align: center;
+}
+.large {
+    font-size: 3em;
+}
+.medium {
+    font-size: large;
+}
+/* Toolbar */
+#toolbar {
+  float: left;
+  font-family: 'Rajdhani', cursive;
+  display: flex;
+}
+.toolbar-item {
+  display: inline-block;
+  margin-right: 2px;
+}
+/* --------- */
+/* Server Filter - Toolbar */
+#filters {
+  display: flex;
+  flex-direction: column;
+}
+.filter-checkbox {
+  display: none;
+}
+input[type="checkbox"] + label {
+  vertical-align: center;
+  align-items: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  padding: 1px 6px;
+  margin: 0;
+  border: 1px solid #546E7A;
+  background-color: rgb(38, 50, 56);
+  color: white;
+  font-family: 'Rajdhani', cursive;
+  font-size: 115%;
+  min-width: 50px;
+  height: 50px;
+}
+input[type="checkbox"]:checked + label {
+  color: rgb(3, 155, 229);
+}
+input[type="checkbox"]:not(:checked) + label {
+  color: rgb(96, 125, 139)
+}
+/* ---------- */
+/* Page Switcher - Toolbar*/
+#page-changer {
+float: right;
+}
+.cust-button, #page-select {
+  border: 1px solid #546E7A;
+  background-color: rgb(38, 50, 56);
+  color: white;
+  font-family: 'Rajdhani', cursive;
+  font-size: 115%;
+  min-width: 50px;
+  height: 50px;
+}
+#page-select {
+  text-align: center;
+  width: 0px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+/* -------------- */
+/* BAN TABLE CSS */
+th {
+  background-color: #37474F;
+}
+td {
+  background-color: #455A64;
+}
+table {
+  width: 100%;
+}
+td, th {
+  padding: 5px; 
+  margin: 0;
+  border: 1px solid #546E7A;
+}
+.appealed-ban {
+  background-color: #2E7D32;
+  border: 1px solid #388E3C!important;
+}
+.active-ban {
+  background-color: rgba(183, 28, 28, 0.7);
+  border: 1px solid rgb(183, 28, 28)!important;
+}
+/* ------------------ */
+@keyframes flash {
+    0% {
+        color: #F5F5F5;
+    }
+    50% {
+        color: rgb(147 194 236);
+    }
+    100% {
+        color: #F5F5F5;
+    }
+}
+.blink {
+    animation: flash 3s infinite; 
+}

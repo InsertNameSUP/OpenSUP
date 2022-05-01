@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SUP Tracker</title>
+        <link rel="shortcut icon" href="https://superiorservers.co/static/favicon.ico">
+        <link href="style.css" rel="stylesheet">
+              <script src="util.js"></script>
+        <script src="content.js"></script>
+
+    </head>
+    <body>
+              <div class="creds"><a href="https://superiorservers.co/"><img class="cred-flex logo-small" src="https://superiorservers.co/static/images/site-logo_reduced.png"></img></a></div>
+        <a href="/" class="title"><span class="blink">SUP</span> TRACKER</a>
+        <div id="content-container">
+            <div id="content">
+                    <h1 class="large">Bans</h1>
+                  <div id="toolbar">
+                    <div id="filters" class="toolbar-item">
+                      <div>
+                      <input type="checkbox" class="filter-checkbox" onchange="onServerFilterChange()" id="drp-checkbox" onclick=""></input>
+                      <label for="drp-checkbox">DarkRP</label>
+                      <input type="checkbox" class="filter-checkbox" onchange="onServerFilterChange()" id="cwrp-checkbox" onclick=""></input>
+                      <label for="cwrp-checkbox">CWRP</label>
+                      <input type="checkbox" class="filter-checkbox" onchange="onServerFilterChange()" id="milrp-checkbox" onclick=""></input>
+                      <label for="milrp-checkbox">MILRP</label>
+                      </div>
+                      <button class="cust-button" style="height: fit-content;" onclick="document.location.reload()" id="apply-server">Apply Changes</button>
+                    </div>
+                  </div>
+                  <div id="page-changer" class="toolbar-item">
+                    <button class="cust-button" onclick="changePage(-1)">PREVIOUS</button>
+                    <form action="./" onsubmit="setPage()" style="display: inline-block;"><input id="page-select" name="p" type="number"></input></form>
+                    <button class="cust-button" onclick="changePage(1)">NEXT</button>
+                  </div>
+                    <table id="bans-table">
+                      <tr>
+                        <th>BanID</th>
+                        <th>Date</th>
+                        <th>Server</th>
+                        <th>Offender</th>
+                        <th>Admin</th>
+                        <th>Length</th>
+                        <th>Ban Reason</th>
+                        <th>Unban Reason</th>
+                      </tr>
+                    </table>
+            </div>
+        </div>
+
+
+    </body>
+</html>

@@ -1,92 +1,70 @@
-const urlParams = new URLSearchParams(window.location.search);
-const s = urlParams.get('s');
 const Responses = {
   Success: 0,
   InvalidUser: 1,
   NoData: 2,
 }
 var playerData = null;
-var steamProfile = null;
+
 
 
 (async () => {
-    playerData = await fetch("https://opensup.insert-name.repl.co/api/player/" + s).then(data => data.json());
-    if(document.readyState && playerData.Response == Responses.Success) {
-        document.getElementById("user-profile-pic").src = "https://opensup.insert-name.repl.co/api/profilepic/" + s;
-        document.getElementById("user-name").innerText = playerData.Player.Name;
-        document.getElementById("last-updated").innerText = "Updated " + Math.round((Date.now()/1000 - parseInt(playerData.Player.LastUpdate))/60) + " minutes ago";
+    chartData = await fetch("https://opensup.insert-name.repl.co/api/top/players/").then(data => data.json());
+    if(document.readyState && chartData.Response == Responses.Success) {
         instantiateCharts();   
     }
-    else if(playerData.Response == Responses.NoData) {
-      document.getElementById("chart-container").innerHTML = "No Substantial Data Collected. Try again later.";
-      window.location.reload(); // Retry so we can get user info like Name and profile pic
+    else {
+      window.location.reload(); // Retry, change to an error page later
       return;
     }
 })()
 
 function instantiateCharts() {
-    var moneyValues = [];
-    var karmaValues = [];
+    var moneyDataSets = [];
     var moneyTimeStamps = [];
-    var karmaTimeStamps = [];
     var moneyChart = document.getElementById("money-track").getContext('2d');
     var karmaChart = document.getElementById("karma-track").getContext('2d');
-    playerData = playerData.Player;
-  
-    if(playerData.Data.length <= 1) {
-      document.getElementById("chart-container").innerHTML = "No Substantial Data Collected. Try again later.";
-      return;
-    }
-    if(playerData.Data.length < 3 && playerData.Data.length > 0) { // if theres less than 3 entries, just print all of them onto the graph
+    playerData = chartData.Data;
       for(var i = 0; i < playerData.length; i++) {
-            moneyValues.push(playerData.Data[i].Money);
-            moneyTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
-            karmaValues.push(playerData.Data[i].Karma);
-            karmaTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
+          moneyValues = playerData[i].Data;
+          moneyDataSets[i] = {
+                label: playerData[i].Name,
+                data:moneyValues,
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+          }
       }
-    }
-    for(var i = 0; i < playerData.Data.length; i++) { // Money
-        if(i == 0 || i == 1 || i == (playerData.Data.length - 1)) {
-            moneyValues.push(playerData.Data[i].Money);
-            moneyTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
-        } else {
-            if(playerData.Data[i].Money == playerData.Data[i - 1].Money && playerData.Data[i].Money == playerData.Data[i + 1].Money) { // Remove Duplicates if the point has the same value as the two points behind it and the point infront of it.
-                continue;
-            } else {
-                moneyValues.push(playerData.Data[i].Money);
-                moneyTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
-            }
-        }
-    }
-    for(var i = 0; i < playerData.Data.length; i++) { // Karma
-        if(i == 0 || i == 1 || i == (playerData.Data.length - 1)) {
-            karmaValues.push(playerData.Data[i].Karma);
-            karmaTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
-        } else {
-            if(playerData.Data[i].Karma == playerData.Data[i - 1].Karma && playerData.Data[i].Karma == playerData.Data[i - 2].Karma && playerData.Data[i].Karma == playerData.Data[i + 1].Karma) { // Remove Duplicates
-                continue;
-            } else {
-                karmaValues.push(playerData.Data[i].Karma);
-                karmaTimeStamps.push(Math.round((Date.now()/1000 - parseInt(playerData.Data[i].Time))/60/60));
-            }
-        }
-    }
+      for(var i = 0; i < playerData[0].Data.length; i ++) {
+        moneyTimeStamps.push(Math.round((Date.now()/1000 - parseInt(chartData.TimeStamps[i]))/60/60));
+      }
+
     var moneyLineChart = new Chart(moneyChart, {
         type:"line",
         data: {
             labels: moneyTimeStamps,
-            datasets:[{
-                label: 'Money',
-                data:moneyValues,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
+            datasets:moneyDataSets
         },
         options: {
+            plugins: {
+               legend: {
+                   display: false
+                  },
+              tooltip: {
+                callbacks: {
+                  title: function(context) {
+                    return context[0].label + ' Hour(s) Ago';
+                  }
+                }
+              },
+              decimation: {
+                enabled: true,
+                algorithm: 'lttb',
+                samples: 50,
+              },
+            },
             elements: {
               point:{
-                radius: 2
+                radius: 5
               }
             },
             responsive: true,
@@ -96,44 +74,25 @@ function instantiateCharts() {
                     display: true,
                     text: 'Hours Ago'
                   }
-              }
-            }
-        }
-    });
-    var karmaLineChart = new Chart(karmaChart, {
-        type:"line",
-        data: {
-            labels: karmaTimeStamps,
-            datasets:[{
-                label: 'Karma',
-                data:karmaValues,
-                fill: false,
-                borderColor: 'rgb(0, 255, 0)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            elements: {
-              point:{
-                radius: 2
-              }
-            },
-            responsive: true,
-            scales: {
-              x: {
+              },
+              y: {
+                  type: 'logarithmic',
                   title: {
                     display: true,
-                    text: 'Hours Ago'
+                    text: 'Money'
                   }
               }
             }
         }
     });
-    moneyLineChart.canvas.parentNode.style.height = '360px';
-    moneyLineChart.canvas.parentNode.style.width = '720px';
-    karmaLineChart.canvas.parentNode.style.height = '360px';
-    karmaLineChart.canvas.parentNode.style.width = '720px';
-
 
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
