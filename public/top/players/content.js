@@ -31,7 +31,7 @@ function instantiateCharts() {
                 data:moneyValues,
                 fill: false,
                 borderColor: getRandomColor(),
-                tension: 0.1
+                tension: 0
           }
       }
       for(var i = 0; i < playerData[0].Data.length; i ++) {
@@ -46,7 +46,7 @@ function instantiateCharts() {
         },
         options: {
             plugins: {
-               legend: {
+              legend: {
                    display: false
                   },
               tooltip: {
@@ -67,7 +67,7 @@ function instantiateCharts() {
                 radius: 5
               }
             },
-            responsive: true,
+            //responsive: true,
             scales: {
               x: {
                   title: {
@@ -76,7 +76,9 @@ function instantiateCharts() {
                   }
               },
               y: {
-                  type: 'logarithmic',
+                  type: 'linear',
+                  beginAtZero: false,
+                  grace: '0%',
                   title: {
                     display: true,
                     text: 'Money'

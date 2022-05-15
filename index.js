@@ -81,7 +81,7 @@ async function a() {
 
 }
 a();
-//UpdateAllUserData();
+UpdateAllUserData();
 setInterval(UpdateAllUserData, 86400000); // Every 30 mins
 
 

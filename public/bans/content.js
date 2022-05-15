@@ -87,7 +87,7 @@ function createRow(banEntry) {
           newCell.innerHTML = util.FormatDate(banEntry[i])
         }
         if(i == 7) {
-          newCell.innerHTML = util.TimeToString(banEntry[i])
+         newCell.innerHTML = banEntry[i] <= 0 ? 'Permanent' : util.TimeToString(banEntry[i]);
         }
         if(i == 3 || i == 5) { // Link names to profiles
           newCell.innerHTML = `<a href="https://superiorservers.co/profile/${banEntry[i + 1]}"> ${banEntry[i]} </a>`;

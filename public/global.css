@@ -1,0 +1,30 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(38, 50, 56);
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+
+@keyframes flash {
+    0% {
+        color: #F5F5F5;
+    }
+    50% {
+        color: rgb(147 194 236);
+    }
+    100% {
+        color: #F5F5F5;
+    }
+}
+.blink {
+    animation: flash 3s infinite; 
+}
